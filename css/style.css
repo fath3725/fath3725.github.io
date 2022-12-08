@@ -27,6 +27,11 @@ pre{
    justify-content:center;
 
 }
+.para2{
+   display: flex;
+   align-items:center;
+   justify-content:center;
+}
 
 #projects{
    background-color: #000; 
@@ -70,7 +75,9 @@ pre{
    height: 14rem;
    border: 0.5rem solid rgba(0, 0, 0, 0.1);
  }
- .myself h4, .myself .h4 {
-   margin-top: 1.5rem;
-   margin-bottom: 0;
+
+
+ footer{
+   background-color: #000;
+   color: #fff;
  }
