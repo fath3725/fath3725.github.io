@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!--makes ur website responsibe-->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <Link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+	<title>Nusrath Fathima's Portfolio</title>
+	
+</head>
+
+<nav class="navbar navbar-dark navbar-expand-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand nav-link active mr-auto" href="../index.html"> NUSRATH FATHIMA'S PORTFOLIO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="Navbar">
+      <div class="navbar-nav mr-auto">
+        <a class="nav-link " href="../index.html#about">ABOUT</a>
+        <a class="nav-link" href="../index.html#projects">PROJECTS</a>
+        <a class="nav-link" href="../index.html#resume">RESUME</a>
+      </div>
+  </div>
+</nav>
+
+<body>
+  <div class="container">
+    <div clas="container">
+      <h2 class="m-auto"></h2>
+    </div>
+    <h1> DATA SCIENCE: PREDICTING CONSUMER SATISFACTION</h1>
+    <p style=" color:grey;"> Last Updated: 06 Dec 2022</p>
+
+    <h2>Introduction</h2>
+    <p> I was tasked to do this group project as part of the module CZ1115: Introduction to Data Science & Artificial Intelligence that I took during my time in NTU. We used the public dataset of orders made at Olist Store &#40;A Brazilian ecommerce platform&#41; provided by <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce?select=olist_products_dataset.csv">Kaggle</a>. </p>
+    
+    <h5>About E-Commerce</h5>
+    <p>One of the booming industries in the 21st Century is the E-commerce industry. With many people living a fast-paced life, it is much easier to purchase the items needed with a simple click of a button. Given this rapidly growing industry, sellers have started selling products on online platforms such as Shopee, Lazada, and in Brazil, Olist.</p>
+    <p>While sellers are trying to increase their profits as much as they can, much of this profit depends on how much people buy from these sellers. So how are sellers going to attract customers? If they do attract customers, how are they going to ensure a continuous long-term attraction of these customers? The answer is customer satisfaction. Many companies and online sellers are increasingly focusing on consumer experience. The more a consumer is contented, the more likely they are going to come back to the seller and the online platform. Additionally, satisfied customers leave positive review scores that attract other customers to the sellers.</p>
+    <p>Profitero wrote an article stating that review scores are a great reflection of customer satisfaction. As such, we decided to focus on customer satisfaction in the Olist Online Platform in Brazil. Review Score was chosen as our response variable. Through exploratory data analysis, we narrowed down to 5 predictors: actual delivery time, the difference between actual and estimated wait time, freight value, payment value and payment instalment.</p> 
+    
+
+    <h5>The Research Question:</h5>
+    <p>How different variables such as <b>actual delivery time, the difference between actual and estimated wait time, freight value, payment value, payment installment</b> affect the <i>review score</i> in each of the different <i>product type categories,</i>  <mark>houseware</mark>, <mark>auto</mark>, <mark>furniture decor</mark>,<mark>computer accessories</mark> , <mark>health beauty</mark>, <mark>sports leisure</mark>?</p>
+
+    <h5>About the Database</h5>
+    <p>Kaggle provided many datasets among which only a selected few were merged and cleaned. The image below shows the datasets that were merged for this project:</p>
+    <img class="img-fluid" src="../images/dsai-assets/datasets.jpg" alt="How the different datasets are related to each other. Only some of the datasets are selected, they are olist_order_reviews_dataset, olist_orders_dataset, olist_order_payments_dataset_olist_order_items_dataset and olist_products_dataset">
+    <p>The above data sets provided the necessary data on the actual delivery time, the difference between actual and estimated wait time, freight value, payment value and payment instalment. Freight value, payment value and payment instalment were primary data provided by Kaggle.</p>
+    <p>Actual wait time and the difference between actual and estimated wait time had to be procured from the timestamp Olist provided in its datasets.</p>
+  
+    <h5 >Packages To Install</h5>
+<ol>
+  <li>Anaconda</li>
+  <li>Python</li>
+  <li>Jupyter Notebook (Anaconda)</li>
+  <li>Python Graphviz (Anaconda)</li>
+  <li>Github Desktop for collaboration (Optional)</li>
+</ol>
+
+<h5 >The steps taken before machine learning was carried out</h5>
+<ol>
+  <li>Merging Datasets</li>
+  <li>Filtering reviews based on order status, order status has to be set to delivered</li>
+  <li>Reclassifying review score into class 0 and class 1</li>
+  <li>Splitting the dataset into 6 product categories</li>
+  <li>Removing duplicates and null values</li>
+  <li>Balancing review score</li>
+</ol>
+
+<h2>Exploratory Data Analysis (EDA)</h2>
+<p>In the GitHub repository, there are 5 parts to EDA:</p>
+<ol>
+  <li>Part 1_Review Status</li>
+  <li>Part 2_Delivery Time</li>
+  <li>Part 3_Product Type</li>
+  <li>Part 4_Payment Mode </li>
+  <li>Part 5_Multi Variate Analysis</li>
+</ol>
+<p>Each of these parts explains the CSVs provided by the Kaggle Website. Additionally, it helps to sieve out variables that affect review score so that they can be later used for multivariate analysis and thereafter machine learning.</p>
+
+<h5>Cleaning and Reorganizing Review Score</h5>
+<p>The review score is a categorical data type with a class imbalance. </p>
+<p><img src = "../images/dsai-assets/Review_Score_imbalance.png" class="img-fluid" width="50%" style="vertical-align:middle"></p>
+<p>Hence, the classes had to be reorganised into two classes. This was to reduce the amount of up-scaling required. Upscaling of the class with the fewer count was needed to balance the classes. </p>
+<p>Review scores 1 and 2 were classified as class 0 and review scores 3,4 and 5 were classified as class 1. The reason for all predictors is the same. Below shows the code used to balance the classes:</p>
+<pre>
+  <code>
+    def balancing(dataframe):
+        <span class="hljs-comment"># Class count</span>
+        review_class_1, <span class="hljs-attr">review_class_0</span> = dataframe.reviewscore.value_counts()
+
+        <span class="hljs-comment"># Divide by class</span>
+        <span class="hljs-attr">df_review_0</span> = dataframe[dataframe['reviewscore'] == <span class="hljs-number">0</span>]
+        <span class="hljs-attr">df_review_1</span> = dataframe[dataframe['reviewscore'] == <span class="hljs-number">1</span>]
+
+        <span class="hljs-attr">df_review_0_over</span> = df_review_0.sample(review_class_1, <span class="hljs-attr">replace</span> = True)
+        <span class="hljs-attr">dataframe</span> = pd.concat([df_review_1, df_review_0_over], <span class="hljs-attr">axis</span> = <span class="hljs-number">0</span>)
+        return dataframe
+</code>
+</pre>
+
+
+<p><br>To illustrate, let’s take the example of payment value. There was a difference between review score 1 and 2. However, review scores 3,4 and 5 have very similar means and the error bars intercept visually. This suggests that the review scores of 3, 4 and 5 are not that different. </p>
+<p><img src="../images/dsai-assets/payment_value_before.png" width="50%" style="vertical-align:middle"></p>
+
+<p>After reclassification, we see that there is a large difference between class 0 and class 1. </p>
+<p><img src="../images/dsai-assets/payment_value_after.png" width="50%" style="vertical-align:middle"></p>
+<p>Hence, reclassification into class 0 and class 1 was done. The same was done to the other predictor variables. </p>
+
+<h5>Classification of Data into the different product types</h5>
+<p>Classification of the data into the different product types was essential since there are inherent differences between the different product types. To give an example, take payment instalments in the different product category types, the mean, the standard deviation and the range are all very different. </p>
+<p><img src="../images/dsai-assets/producttypesplit.png" width="75%" style="vertical-align:middle"></p>
+<p>Hence, splitting the data into the different product types would lead to a more accurate machine learning outcome. </p>
+
+<h5>Narrowing down to top ten product category types</h5>
+<p>Category types that were consistently in the top ten from 2016 to 2018 were selected. This is because such products were consistently in high demand. Such products may provide sellers information into which products sell most frequently in the long run. These product category types are: houseware, auto, furniture decor, computer accessories, health beauty, sports leisure?</p>
+
+<h2>Machine Learning</h2>
+
+<h5>Machine Learning: Decision Tree</h5>
+<p>A decision tree is a basic machine learning tool. It uses the different numerical predictors to predict whether the review score is of class 0 or class 1. The machine learning outcome changes every time the ipynb is run. </p>
+<p><img src="../images/dsai-assets/decisiontree.png" width="100%" style="vertical-align:middle"></p>
+<p>At each leaf node, a predictor is used. Above a certain value of the predictor variable, the review score is classified into class 1 and below that value, it is classified as class 0. The decision tree has a max depth of 6. Here is the code for the decision tree:</p>
+<pre>
+  <code class="lang-python">    <span class="hljs-comment">#https://scikit-learn.org/stable/modules/tree.html</span>
+    def train_and_predict(dataframe):
+        <span class="hljs-comment"># Import essential models and functions from sklearn</span>
+        from sklearn.tree <span class="hljs-built_in">import</span> DecisionTreeClassifier
+        from sklearn.model_selection <span class="hljs-built_in">import</span> train_test_split
+        from sklearn.metrics <span class="hljs-built_in">import</span> confusion_matrix
+
+        <span class="hljs-comment"># Extract Response and Predictors</span>
+        <span class="hljs-attr">y</span> = pd.DataFrame(dataframe['reviewscore'])
+        <span class="hljs-attr">X</span> = pd.DataFrame(dataframe[[<span class="hljs-string">"payment_installments"</span>, <span class="hljs-string">"payment_value"</span>, <span class="hljs-string">"freight_value"</span>, <span class="hljs-string">"actual_wait_time"</span>, <span class="hljs-string">"actualxestimated"</span>]]) 
+
+        <span class="hljs-comment"># Split the Dataset into Train and Test</span>
+        X_train, X_test, y_train, <span class="hljs-attr">y_test</span> = train_test_split(X, y, <span class="hljs-attr">test_size</span> = <span class="hljs-number">0.25</span>)
+
+        <span class="hljs-comment"># Decision Tree using Train Data</span>
+        <span class="hljs-attr">dectree</span> = DecisionTreeClassifier(<span class="hljs-attr">max_depth</span> = <span class="hljs-number">7</span>)  <span class="hljs-comment"># create the decision tree object</span>
+        dectree.fit(X_train, y_train)                    <span class="hljs-comment"># train the decision tree model</span>
+
+        <span class="hljs-comment"># Predict Response corresponding to Predictors</span>
+        <span class="hljs-attr">y_train_pred</span> = dectree.predict(X_train)
+        <span class="hljs-attr">y_test_pred</span> = dectree.predict(X_test)
+
+        from sklearn.tree <span class="hljs-built_in">import</span> export_graphviz
+        <span class="hljs-attr">treedot</span> = export_graphviz(dectree, <span class="hljs-attr">feature_names</span> = X_train.columns, <span class="hljs-attr">out_file</span> = None, <span class="hljs-attr">filled</span> = True, <span class="hljs-attr">rounded</span> = True, <span class="hljs-attr">special_characters</span> = True,<span class="hljs-attr">class_names=</span> [<span class="hljs-string">"0"</span>, <span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>])
+        <span class="hljs-built_in">import</span> graphviz
+        from IPython.display <span class="hljs-built_in">import</span> display
+        display(graphviz.Source(treedot))
+
+        <span class="hljs-comment"># Check the Goodness of Fit (on Train Data)</span>
+        print(<span class="hljs-string">"Goodness of Fit of Model: Train Dataset"</span>)
+        print(<span class="hljs-string">"Classification Accuracy : "</span>, dectree.score(X_train, y_train))
+        <span class="hljs-attr">confusion_matrix_train</span> = confusion_matrix(y_train, y_train_pred)
+        <span class="hljs-attr">TN</span> = confusion_matrix_train[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+        <span class="hljs-attr">TP</span> = confusion_matrix_train[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+        <span class="hljs-attr">FP</span> = confusion_matrix_train[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+        <span class="hljs-attr">FN</span> = confusion_matrix_train[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+        print(<span class="hljs-string">"True Negative Rate      : "</span>, TN/(TN+FP))
+        print(<span class="hljs-string">"True Positive Rate      : "</span>, TP/(TP+FN))
+        print(<span class="hljs-string">"False Negative Rate     : "</span>, FN/(FN+TP))
+        print(<span class="hljs-string">"False Positive Rate     : "</span>, FP/(TN+FP))
+        print()
+
+        <span class="hljs-comment"># Check the Goodness of Fit (on Test Data)</span>
+        print(<span class="hljs-string">"Goodness of Fit of Model: Test Dataset"</span>)
+        print(<span class="hljs-string">"Classification Accuracy : "</span>, dectree.score(X_test, y_test))
+        <span class="hljs-attr">confusion_matrix_test</span> = confusion_matrix(y_test, y_test_pred)
+        <span class="hljs-attr">TN</span> = confusion_matrix_test[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+        <span class="hljs-attr">TP</span> = confusion_matrix_test[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+        <span class="hljs-attr">FP</span> = confusion_matrix_test[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+        <span class="hljs-attr">FN</span> = confusion_matrix_test[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+        print(<span class="hljs-string">"True Negative Rate      : "</span>, TN/(TN+FP))
+        print(<span class="hljs-string">"True Positive Rate      : "</span>, TP/(TP+FN))
+        print(<span class="hljs-string">"False Negative Rate     : "</span>,FN/(FN+TP))
+        print(<span class="hljs-string">"False Positive Rate     : "</span>, FP/(TN+FP))
+
+        <span class="hljs-comment"># Plot the Confusion Matrix for Train and Test</span>
+        f, <span class="hljs-attr">axes</span> = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-attr">figsize=(12,</span> <span class="hljs-number">4</span>))
+        sb.heatmap(confusion_matrix(y_train, y_train_pred),
+                <span class="hljs-attr">annot</span> = True, <span class="hljs-attr">fmt=".0f",</span> <span class="hljs-attr">annot_kws={"size":</span> <span class="hljs-number">18</span>}, <span class="hljs-attr">ax</span> = axes[<span class="hljs-number">0</span>], <span class="hljs-attr">cmap</span> = <span class="hljs-string">"Greens"</span>)
+        sb.heatmap(confusion_matrix(y_test, y_test_pred), 
+                <span class="hljs-attr">annot</span> = True, <span class="hljs-attr">fmt=".0f",</span> <span class="hljs-attr">annot_kws={"size":</span> <span class="hljs-number">18</span>}, <span class="hljs-attr">ax</span> = axes[<span class="hljs-number">1</span>], <span class="hljs-attr">cmap="Greens")</span>
+</code>
+</pre>
+
+
+<p><br>This decision tree method did not provide a very high classification accuracy (65% to 75%), true positive (60% to 85%) and true negative (50% to 60%). There was a large distribution of these values across product types too. Every time the notebook is run, the train and test classification accuracy would differ from a range of 1% to 10%. Additionally, false positive was above 40% for most product types across multiple runs of the ipynb. This shows that the machine learning tool was not the best. </p>
+
+<h5>Machine Learning: Random Forest</h5>
+<p>Another option was to run the random forest algorithm. A random forest uses a &#39;forest&#39;, a multitude of decisions trees that help to classify the data points into the different review scores. The reason why random forest works so well is that &quot;A large number of relatively uncorrelated models (trees) operating as a committee will outperform any of the individual constituent models.&quot; (sklearn). Here is the code for the random forest:</p>
+<pre>
+  <code class="lang-python">    def train_and_predict(dataframe):
+    <span class="hljs-comment"># Import essential models and functions from sklearn</span>
+    from sklearn.tree <span class="hljs-built_in">import</span> DecisionTreeClassifier
+    from sklearn.model_selection <span class="hljs-built_in">import</span> train_test_split
+    from sklearn.metrics <span class="hljs-built_in">import</span> confusion_matrix
+
+    <span class="hljs-comment"># Extract Response and Predictors</span>
+    <span class="hljs-attr">y</span> = pd.DataFrame(dataframe['reviewscore'])
+    <span class="hljs-attr">X</span> = pd.DataFrame(dataframe[[<span class="hljs-string">"payment_installments"</span>, <span class="hljs-string">"payment_value"</span>, <span class="hljs-string">"freight_value"</span>, <span class="hljs-string">"actual_wait_time"</span>, <span class="hljs-string">"actualxestimated"</span>]]) 
+
+    <span class="hljs-comment"># Split the Dataset into Train and Test</span>
+    X_train, X_test, y_train, <span class="hljs-attr">y_test</span> = train_test_split(X, y, <span class="hljs-attr">test_size</span> = <span class="hljs-number">0.25</span>)
+
+    <span class="hljs-comment"># Import RandomForestClassifier model from Scikit-Learn</span>
+    from sklearn.ensemble <span class="hljs-built_in">import</span> RandomForestClassifier
+
+    <span class="hljs-comment"># Create the Random Forest object</span>
+    <span class="hljs-attr">rforest</span> = RandomForestClassifier(<span class="hljs-attr">n_estimators</span> = <span class="hljs-number">1000</span>,  <span class="hljs-comment"># n_estimators denote number of trees</span>
+                                    <span class="hljs-attr">max_depth</span> = <span class="hljs-number">10</span>)       <span class="hljs-comment"># set the maximum depth of each tree</span>
+
+    <span class="hljs-comment"># Fit Random Forest on Train Data</span>
+    rforest.fit(X_train, y_train.reviewscore.ravel())
+
+    <span class="hljs-comment"># Predict the Response corresponding to Predictors</span>
+    <span class="hljs-attr">y_train_pred</span> = rforest.predict(X_train)
+    <span class="hljs-attr">y_test_pred</span> = rforest.predict(X_test)
+
+    <span class="hljs-comment"># Check the Goodness of Fit (on Train Data)</span>
+    print(<span class="hljs-string">"Goodness of Fit of Model: Train Dataset"</span>)
+    print(<span class="hljs-string">"Classification Accuracy : "</span>, rforest.score(X_train, y_train))
+    <span class="hljs-attr">confusion_matrix_train</span> = confusion_matrix(y_train, y_train_pred)
+    <span class="hljs-attr">TN</span> = confusion_matrix_train[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+    <span class="hljs-attr">TP</span> = confusion_matrix_train[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-attr">FP</span> = confusion_matrix_train[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-attr">FN</span> = confusion_matrix_train[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+    print(<span class="hljs-string">"True Negative Rate      : "</span>, TN/(TN+FP))
+    print(<span class="hljs-string">"True Positive Rate      : "</span>, TP/(TP+FN))
+    print(<span class="hljs-string">"False Negative Rate     : "</span>, FN/(FN+TP))
+    print(<span class="hljs-string">"False Positive Rate     : "</span>, FP/(TN+FP))
+    print()
+
+    <span class="hljs-comment"># Check the Goodness of Fit (on Test Data)</span>
+    print(<span class="hljs-string">"Goodness of Fit of Model: Test Dataset"</span>)
+    print(<span class="hljs-string">"Classification Accuracy : "</span>, rforest.score(X_test, y_test))
+    <span class="hljs-attr">confusion_matrix_test</span> = confusion_matrix(y_test, y_test_pred)
+    <span class="hljs-attr">TN</span> = confusion_matrix_test[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+    <span class="hljs-attr">TP</span> = confusion_matrix_test[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-attr">FP</span> = confusion_matrix_test[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-attr">FN</span> = confusion_matrix_test[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+    print(<span class="hljs-string">"True Negative Rate      : "</span>, TN/(TN+FP))
+    print(<span class="hljs-string">"True Positive Rate      : "</span>, TP/(TP+FN))
+    print(<span class="hljs-string">"False Negative Rate     : "</span>,FN/(FN+TP))
+    print(<span class="hljs-string">"False Positive Rate     : "</span>, FP/(TN+FP))
+
+    <span class="hljs-comment"># Plot the Confusion Matrix for Train and Test</span>
+    f, <span class="hljs-attr">axes</span> = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-attr">figsize=(12,</span> <span class="hljs-number">4</span>))
+    sb.heatmap(confusion_matrix(y_train, y_train_pred),
+            <span class="hljs-attr">annot</span> = True, <span class="hljs-attr">fmt=".0f",</span> <span class="hljs-attr">annot_kws={"size":</span> <span class="hljs-number">18</span>}, <span class="hljs-attr">ax</span> = axes[<span class="hljs-number">0</span>])
+    sb.heatmap(confusion_matrix(y_test, y_test_pred), 
+            <span class="hljs-attr">annot</span> = True, <span class="hljs-attr">fmt=".0f",</span> <span class="hljs-attr">annot_kws={"size":</span> <span class="hljs-number">18</span>}, <span class="hljs-attr">ax</span> = axes[<span class="hljs-number">1</span>])
+</code>
+</pre>
+
+<p><br>There is a low correlation between the trees and the trees help to cover each other’s errors to enable the most accurate classification. Hence, we see that the random forest does enable better classification in part 7. The max_depth was set to 6 the same as when the decision tree was run. False positive was still in the same range as the decision tree. </p>
+<p>False positives are generally bad given our research question. This is because sellers want to adjust their actual delivery time, the difference between actual and estimated wait time, freight value, payment value, payment instalment such that they obtain the best review score 1 which was translated to a 3 to 5 review score. If they adjust these factors and get a false positive, then they may predict a high review score but end up getting a low one.</p>
+<p>The random forest also gives different outcomes every time the ipynb is run. However, the classification accuracy, true positive, true negative, false positive, false negative as well as the deviation between train and test data change very little across the different runs of the ipynb. The difference from every run is less than 5%. This makes the random forest more reliable than a decision tree given the same set of data given. </p>
+
+<h5>Machine Learning: Cross-Validated Grid Search</h5>
+<p>However, an additional step must be done to reduce the false positive. Tuning of hyperparameters must be done to achieve the highest possible classification accuracy, true positive and true negative and lowest possible false positive and false negative. Hyperparameters are used to make the random forest. There are many hyperparameters but for the scope of this project adept and n_estimators were chosen. max_depth is the maximum depth each decision tree goes in the &#39;forest&#39; of trees. n_estimators is the number of trees in the forest.</p>
+<p>To find the best hyperparameters a Grid Search is done.</p>
+<p>Grid Search will then run a range for the hyperparameters. The definition provided by the official Sci-Kit learn website is &quot;The parameters of the estimator used to apply these methods are optimized by cross-validated grid-search over a parameter grid.&quot; Cross-validation is defined as &quot;Cross-validation is a statistical method used to estimate the performance (or accuracy) of machine learning models.&quot; </p>
+<p>The Best_Score is the average of the cross-validated score of the best hyperparameters. Since cv = 5, the train and test split will occur five times for each hyperparameter. The best score is calculated for each trial and each combination of hyperparameters. The best score will return the average of the best hyperparameter combination in those 5 tries. </p>
+<p>This function will return the best hyperparameters max_depth and n_estimators. The max_depth was run from a range of 2 to 11, using the NumPy range. The n_estimators was run from 100 to 1001 at a step of 100. For all product types, the best max_depth was 10. Here is the code for the Grid Search:</p>
+
+<pre>
+  <code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">best_hyperparameter</span><span class="hljs-params">(dataframe)</span>:</span>
+    <span class="hljs-comment"># Import essential models and functions from sklearn</span>
+    <span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
+    <span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+    <span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix
+    <span class="hljs-comment"># Import RandomForestClassifier model from Scikit-Learn</span>
+    <span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
+
+    <span class="hljs-comment"># Extract Response and Predictors</span>
+    y = pd.DataFrame(dataframe[<span class="hljs-string">'reviewscore'</span>])
+    X = pd.DataFrame(dataframe[[<span class="hljs-string">"payment_installments"</span>, <span class="hljs-string">"payment_value"</span>, <span class="hljs-string">"freight_value"</span>, <span class="hljs-string">"actual_wait_time"</span>, <span class="hljs-string">"actualxestimated"</span>]]) 
+
+    <span class="hljs-comment"># Split the Dataset into Train and Test</span>
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="hljs-number">0.25</span>)
+    <span class="hljs-comment"># Import GridSearch for hyperparameter tuning using Cross-Validation (CV)</span>
+    <span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV
+
+    <span class="hljs-comment"># Define the Hyper-parameter Grid to search on, in case of Random Forest</span>
+    param_grid = {<span class="hljs-string">'n_estimators'</span>: np.arange(<span class="hljs-number">100</span>,<span class="hljs-number">1001</span>,<span class="hljs-number">100</span>),   <span class="hljs-comment"># number of trees 100, 200, ..., 1000</span>
+                <span class="hljs-string">'max_depth'</span>: np.arange(<span class="hljs-number">9</span>, <span class="hljs-number">14</span>)}             <span class="hljs-comment"># depth of trees 2, 3, 4, 5, ..., 10</span>
+
+    <span class="hljs-comment"># Create the Hyper-parameter Grid</span>
+    hpGrid = GridSearchCV(RandomForestClassifier(),   <span class="hljs-comment"># the model family</span>
+                        param_grid,                 <span class="hljs-comment"># the search grid</span>
+                        cv = <span class="hljs-number">5</span>,                     <span class="hljs-comment"># 5-fold cross-validation</span>
+                        scoring = <span class="hljs-string">'accuracy'</span>)       <span class="hljs-comment"># score to evaluate</span>
+
+    <span class="hljs-comment"># Train the models using Cross-Validation</span>
+    hpGrid.fit(X_train, y_train.reviewscore.ravel())
+
+    <span class="hljs-comment"># Fetch the best Model or the best set of Hyper-parameters</span>
+    print(hpGrid.best_estimator_)
+
+    <span class="hljs-comment"># Print the score (accuracy) of the best Model after CV</span>
+    print(np.abs(hpGrid.best_score_))
+</code>
+</pre>
+
+
+<p><br>After tuning the hyperparameters, classification accuracy, true positive and true negative went above 90% and false positive went below 2% for most product types. Train and test data were similar although had a discrepancy of about 5% to 11%. </p>
+<p>Next, a range of 9 to 14 using the NumPy range was done for max depth. The n_estimators was run from 100 to 1001 at a step of 100. The classification accuracy increased to above 95% for most product types. The train and test data had a discrepancy below 10% this time around. </p>
+<p>By increasing max_depth and varying its n_estimators, the machine learning outcome is much better than what we had originally in the decision tree. Although the outcome still has a significant difference between train and test, it is much smaller than before and does not change every time the ipynb is run, increasing reliability. </p>
+<p>Further increasing max_depth and n_estimators can allow for an even better classification accuracy in test data as well. 
+To give a summary of the data and show the differences, look at the below table:</p>
+<p>The below table only shows the data for max_depth 10.</p>
+<p><img src="../images/dsai-assets/Final_summary_table.png" width="100%" style="vertical-align:middle"></p>
+<h2 >Conclusion</h2>
+<p>In conclusion, an improvement in overall statistics from the decision tree to the random forest (after Grid Search) is seen. Further improvements can be made by increasing the max_depth. </p>
+<p>Our team has learnt much through this project. We have learnt how to use a random forest, tune hyperparameters and clean data such that it results in a better machine learning outcome.  </p>
+<p>We also learnt that sellers should liaise with a delivery team that can deliver faster to obtain lower actual times and actual minus estimated time to increase their review score. Similarly, to attain lower freight value, sellers can order in bulk or find companies that allow lower freight value. </p>
+<p>To achieve lower payment value, sellers should Create deals with credit card companies or banks to enable the lowest payment value. To achieve lower payment instalments sellers can create better and a more variety of payment instalment plans. </p>
+<p>Using our Machine Learning Outcome, sellers will be able to predict their review scores depending on how their variables are changed. This will provide useful insights specific to their business and allow them to modify the variables such that they get higher review scores, and thus garner more business. </p>
+<h2 >Acknowledgements:</h2>
+<p>We want to thank our professor, Prof Sourav Sen Gupta and our lab teaching assistant Prof Kwok Hong Jing for their continuous support and help throughout the project.</p>
+<p>I also want to thank my group mates, Samiksha and Gideon.</p>
+
+<h2>References:</h2>
+<p>References can be found on our <a href="https://github.com/S-Samiksha/DSAI-Project">Github page</a>.</p>
+      
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h555rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
